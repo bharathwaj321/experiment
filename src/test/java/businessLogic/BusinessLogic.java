@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -100,7 +101,7 @@ public class BusinessLogic {
 	{
 //		Assert.assertEquals(true, pgeElemLndnBook.numOfPartiations.isDisplayed());
 //		Thread.sleep(3000);
-		List<WebElement> totalNumOfVacantSeats = driver.findElements(By.xpath("//*[name()='svg']//*[name()='circle' and @fill='#d6557a']"));
+		List<WebElement> totalNumOfVacantSeats = driver.findElements(By.xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']//*[local-name()='g']//*[name()='circle' and @fill='#d6557a'][1]"));
 		System.out.println("The Number of Vacant seats are "+totalNumOfVacantSeats.size());
 //			
 //			if(totalNumOfVacantSeats.size()>0)
@@ -114,10 +115,13 @@ public class BusinessLogic {
 		
 	
 		
-		WebElement svgObject = driver.findElement(By.id("//*[@id=\"SE-STALLS-AA-2\"]"));
+		WebElement svgObject = driver.findElement(By.xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']//*[local-name()='g']//*[name()='circle' and @fill='#d6557a']"));
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+	    js.executeScript("arguments[0].click();", svgObject);
 		
-		Actions builder = new Actions(driver);
-		builder.click(svgObject).build().perform();
+		
+//		Actions builder = new Actions(driver);
+//		builder.click(svgObject).build().perform();
 		
 			
 			Assert.assertEquals(true, pgeElemLndnBook.checkOutNextBtn.isEnabled());

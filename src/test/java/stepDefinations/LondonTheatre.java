@@ -30,7 +30,14 @@ public class LondonTheatre {
 	}
 
 		
-	@Then("^I will verify whether availability of \"([^\"]*)\"$")
+//	@Then("^I will verify whether availability of \"([^\"]*)\"$")
+//	public void i_will_verify_whether_availability_of(String programmeName) throws Throwable {
+//		bunessLogic.verifyAvailabilityOfTicket(programmeName);
+//	}
+	
+	
+	
+	@Then("^I will verify whether availability of <\"([^\"]*)\">$")
 	public void i_will_verify_whether_availability_of(String programmeName) throws Throwable {
 		bunessLogic.verifyAvailabilityOfTicket(programmeName);
 	}
